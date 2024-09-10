@@ -12,6 +12,6 @@ steps:
       - 'cp'
       - '-r'
       - '/workspace/project/*'
-      - 'gs://your-bucket-name/'
+      - 'gs://alex4e-kod/'
       
 timeout: '600s'  # 10-minute timeout
