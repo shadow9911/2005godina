@@ -1,10 +1,8 @@
 steps:
-  # Step 1: Clone the GitHub repository
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com//shadow9911/2005-godina.git']
+    args: ['clone', 'https://github.com/shadow9911/2005godina.git']
     dir: /workspace
 
-  # Step 2: Copy the cloned files to the Google Cloud Storage bucket
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     args:
       - 'gsutil'
@@ -13,7 +11,6 @@ steps:
       - '-r'
       - '/workspace/project/*'
       - 'gs://alex4e-kod/'
+
 options:
-    logging: NONE
-      
-timeout: '30s'  # 10-minute timeout
+  logging: CLOUD_LOGGING_ONLY
