@@ -27,7 +27,7 @@ steps:
       - 'instance-groups'
       - 'managed'
       - 'recreate-instances'
-      - 'alex4e-instance-group'
+      - 'alex4e-instance-template'
       - '--zone=us-central1'
 
 
