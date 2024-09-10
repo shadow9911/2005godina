@@ -28,8 +28,10 @@ steps:
     args:
       - '-c'
       - |
-        latest_template=$(gcloud compute instance-templates list --sort-by=~creationTimestamp --limit=1 --format="value(name)")
-        echo "$latest_template" > /workspace/env_vars.txt
+        instance_list=$(cat /workspace/instance_list.txt)
+        echo "Instances in the managed instance group:"
+        echo "$instance_list"
+        echo "$instance_list" > /workspace/instance_list.txt        
 
   # Step 5: Trigger a rolling update on the managed instance group using the latest template
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -37,7 +39,9 @@ steps:
     args:
       - '-c'
       - |
-        gcloud compute instance-groups managed recreate-instances alex4e-instance-group --zone=us-central1-a --version=template=alex4e-instance-template
+        instance_list=$(cat /workspace/instance_list.txt)
+        echo "Recreating instances: $instance_list"      
+        gcloud compute instance-groups managed recreate-instances alex4e-instance-group --zone=us-central1-a --instances=$instance_list
 
 
 options:
