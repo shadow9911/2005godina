@@ -23,11 +23,12 @@ steps:
       
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     args:
+      - 'gcloud'
       - 'compute'
       - 'instance-groups'
       - 'managed'
       - 'recreate-instances'
-      - 'alex4e-instance-template'
+      - 'alex4e-instance-group'
       - '--zone=us-central1'
 
 
