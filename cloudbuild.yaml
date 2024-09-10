@@ -37,7 +37,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud compute instance-groups managed rolling-action start-update alex4e-instance-group --zone=us-central1-a --version=template=alex4e-instance-template
+        gcloud compute instance-groups managed recreate-instances alex4e-instance-group --zone=us-central1-a --version=template=alex4e-instance-template
 
 
 options:
