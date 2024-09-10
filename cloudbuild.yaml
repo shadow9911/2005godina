@@ -21,16 +21,24 @@ steps:
       - '/workspace/2005godina.zip'
       - 'gs://alex4e-kod/2005godina.zip'
       
+  # Step 4: Get the latest instance template name
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: 'get-latest-instance-template'
+    entrypoint: 'bash'
     args:
-      - 'gcloud'
-      - 'compute'
-      - 'instance-groups'
-      - 'managed'
-      - 'rolling-action'
-      - 'start-update'
-      - 'alex4e-instance-group'
-      - '--zone=us-central1'
+      - '-c'
+      - |
+        latest_template=$(gcloud compute instance-templates list --sort-by=~creationTimestamp --limit=1 --format="value(name)")
+        echo "LATEST_TEMPLATE_NAME=$latest_template" >> /workspace/env_vars.txt
+
+  # Step 5: Trigger a rolling update on the managed instance group using the latest template
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        source /workspace/env_vars.txt
+        gcloud compute instance-groups managed rolling-action start-update alex4e-instance-group --zone=us-central1 --version=template=$LATEST_TEMPLATE_NAME
 
 
 options:
