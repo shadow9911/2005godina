@@ -37,7 +37,6 @@ steps:
     args:
       - '-c'
       - |
-        ime=`cat /workspace/env_vars.txt`
         gcloud compute instance-groups managed rolling-action start-update alex4e-instance-group --zone=us-central1-a --version=template=alex4e-instance-template
 
 
