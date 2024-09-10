@@ -41,7 +41,7 @@ steps:
       - |
         instance_list=$(cat /workspace/instance_list.txt)
         echo "Recreating instances: $instance_list"      
-        gcloud compute instance-groups managed recreate-instances alex4e-instance-group --zone=us-central1-a --instances=$instance_list
+        gcloud compute instance-groups managed recreate-instances alex4e-instance-group --instances=$instance_list
 
 
 options:
