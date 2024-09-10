@@ -27,7 +27,8 @@ steps:
       - 'compute'
       - 'instance-groups'
       - 'managed'
-      - 'recreate-instances'
+      - 'rolling-action'
+      - 'start-update'
       - 'alex4e-instance-group'
       - '--zone=us-central1'
 
