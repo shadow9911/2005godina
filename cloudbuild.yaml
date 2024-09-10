@@ -20,6 +20,7 @@ steps:
       - 'cp'
       - '/workspace/2005godina.zip'
       - 'gs://alex4e-kod/2005godina.zip'
+      - |
       - 'compute'
       - 'instance-groups'
       - 'managed'
