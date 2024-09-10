@@ -29,7 +29,7 @@ steps:
       - '-c'
       - |
         latest_template=$(gcloud compute instance-templates list --sort-by=~creationTimestamp --limit=1 --format="value(name)")
-        echo "LATEST_TEMPLATE_NAME=$latest_template" >> /workspace/env_vars.txt
+        echo "LATEST_TEMPLATE_NAME=$latest_template" > /workspace/env_vars.txt
 
   # Step 5: Trigger a rolling update on the managed instance group using the latest template
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -37,7 +37,7 @@ steps:
     args:
       - '-c'
       - |
-        source /workspace/env_vars.txt
+        LATEST_TEOMPLATE_NAME=`cat /workspace/env_vars.txt`
         gcloud compute instance-groups managed rolling-action start-update alex4e-instance-group --zone=us-central1 --version=template=$LATEST_TEMPLATE_NAME
 
 
