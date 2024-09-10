@@ -13,5 +13,7 @@ steps:
       - '-r'
       - '/workspace/project/*'
       - 'gs://alex4e-kod/'
+options:
+    logging: NONE
       
 timeout: '30s'  # 10-minute timeout
