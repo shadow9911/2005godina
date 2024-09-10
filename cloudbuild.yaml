@@ -20,6 +20,15 @@ steps:
       - 'cp'
       - '/workspace/2005godina.zip'
       - 'gs://alex4e-kod/2005godina.zip'
+      
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args:
+      - 'compute'
+      - 'instance-groups'
+      - 'managed'
+      - 'recreate-instances'
+      - 'alex4e-instance-group'
+      - '--zone=us-central1'
 
 options:
   logging: CLOUD_LOGGING_ONLY
